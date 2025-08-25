@@ -1,0 +1,35 @@
+models:
+  Project:
+    code: string:50 unique
+    title: string:255
+    research_line: string:255
+    research_area: string:255
+    status: enum:EN_PROCESO,FINALIZADO,SUSPENDIDO default:EN_PROCESO
+    timestamps
+
+  Researcher:
+    dni: char:8 unique
+    first_name: string:100
+    last_name_father: string:100
+    last_name_mother: string:100
+    academic_department: string:255 nullable
+    timestamps
+
+  Participation:
+    project_id: id foreign:projects.id
+    researcher_id: id foreign:researchers.id
+    role: enum:INVESTIGADOR_PRINCIPAL,COINVESTIGADOR,ASISTENTE
+    status: enum:ACTIVO,INACTIVO default:ACTIVO
+    timestamps
+
+relationships:
+  Project:
+    hasMany: Participation
+    belongsToMany: Researcher through=Participation
+  Researcher:
+    hasMany: Participation
+    belongsToMany: Project through=Participation
+  Participation:
+    belongsTo:
+      Project
+      Researcher
