@@ -12,29 +12,39 @@ import { cn } from '@/lib/utils';
 import { dashboard } from '@/routes';
 import { type BreadcrumbItem, type NavItem, type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid, Menu, Search } from 'lucide-react';
+import { LayoutGrid, Menu, Search } from 'lucide-react';
 import AppLogo from './app-logo';
 import AppLogoIcon from './app-logo-icon';
 
 const mainNavItems: NavItem[] = [
     {
-        title: 'Dashboard',
+        title: 'GRUPOS',
+        href: dashboard(),
+        icon: LayoutGrid,
+    },
+    {
+        title: 'INVESTIGADORES',
+        href: dashboard(),
+        icon: LayoutGrid,
+    },
+    {
+        title: 'FINANCIACIÓN',
+        href: dashboard(),
+        icon: LayoutGrid,
+    },
+    {
+        title: 'RESULTADOS',
         href: dashboard(),
         icon: LayoutGrid,
     },
 ];
 
 const rightNavItems: NavItem[] = [
-    {
-        title: 'Repository',
-        href: 'https://github.com/laravel/react-starter-kit',
-        icon: Folder,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#react',
-        icon: BookOpen,
-    },
+    // {
+    //     title: 'Repository',
+    //     href: 'https://github.com/laravel/react-starter-kit',
+    //     icon: Folder,
+    // },
 ];
 
 const activeItemStyles = 'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100';
@@ -100,7 +110,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <div className="ml-6 hidden h-full items-center space-x-6 lg:flex">
+                    {/* <div className="ml-6 hidden h-full items-center space-x-6 lg:flex">
                         <NavigationMenu className="flex h-full items-stretch">
                             <NavigationMenuList className="flex h-full items-stretch space-x-2">
                                 {mainNavItems.map((item, index) => (
@@ -123,7 +133,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                                 ))}
                             </NavigationMenuList>
                         </NavigationMenu>
-                    </div>
+                    </div> */}
 
                     <div className="ml-auto flex items-center space-x-2">
                         <div className="relative flex items-center space-x-1">
@@ -169,6 +179,34 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                             </DropdownMenuContent>
                         </DropdownMenu>
                     </div>
+                </div>
+
+                {/* menu inferior */}
+                <div className="hidden h-full items-center space-x-6 lg:flex ">
+                    <NavigationMenu className="flex h-full items-stretch ">
+                        <NavigationMenuList className="flex h-full items-stretch space-x-2 w-dvw">
+                            {mainNavItems.map((item, index) => (
+                                <div className="flex-1">
+                                    <NavigationMenuItem key={index} className="relative flex h-full w-full items-center">
+                                        <Link
+                                            href={item.href}
+                                            className={cn(
+                                                navigationMenuTriggerStyle(),
+                                                page.url === (typeof item.href === 'string' ? item.href : item.href.url) && activeItemStyles,
+                                                'h-9 cursor-pointer px-3 flex justify-center w-full rounded-none hover:bg-white hover:text-black',
+                                            )}
+                                        >
+                                            {item.icon && <Icon iconNode={item.icon} className="mr-2 h-4 w-4" />}
+                                            {item.title}
+                                        </Link>
+                                        {page.url === item.href && (
+                                            <div className="absolute bottom-0 left-0 h-0.5 w-full translate-y-px bg-black dark:bg-white"></div>
+                                        )}
+                                    </NavigationMenuItem>
+                                </div>
+                            ))}
+                        </NavigationMenuList>
+                    </NavigationMenu>
                 </div>
             </div>
             {breadcrumbs.length > 1 && (
