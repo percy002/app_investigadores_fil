@@ -33,3 +33,10 @@ relationships:
     belongsTo:
       Project
       Researcher
+controllers:
+  Project:
+    resource
+  Researcher:
+    resource
+  Participation:
+    resource

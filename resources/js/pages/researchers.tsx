@@ -2,6 +2,8 @@ import AppLayout from '@/layouts/app-layout';
 import { dashboard } from '@/routes';
 import { BreadcrumbItem, type SharedData } from '@/types';
 import { Head, usePage } from '@inertiajs/react';
+import { log } from 'console';
+import { useEffect } from 'react';
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Dashboard',
@@ -10,17 +12,37 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 export default function Researchers() {
     const { auth } = usePage<SharedData>().props;
+    const { researchers } = usePage<SharedData & { researchers: any[] }>().props;
+    useEffect(() => {
+        // Perform any side effects or data fetching here
+        console.log(researchers);
+    }, [researchers]);
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Investigadores" />
-            <div className="flex gap-12">
-                <div className="flex pt-12 pr-5 pb-1 pl-[150px] flex-col justify-center items-center gap-2.5 flex-1">
-                    <h1 className="text-2xl font-bold">Welcome, {auth.user.name}!</h1>
-                    <p className="text-sm text-muted-foreground">Here’s what’s happening in your account:</p>
+            <div className="flex w-full flex-col">
+                <div className="flex w-full justify-center">
+                    <h1 className="text-center">Actividad investigadora de la UNSAAC</h1>
                 </div>
-                <div className="flex-1">
-                    <img src="/images/inicio.jpg" alt="" />
+                <div className="px-[150px] py-12">
+                    <div className="grid grid-cols-3 gap-6">
+                        {Array.isArray(researchers) &&
+                            researchers.length > 0 &&
+                            researchers.map((researcher) => (
+                                <div className="col-span-1" key={researcher.id}>
+                                    <div className="flex">
+                                        <img className="size-24 rounded-3xl" src="/images/avatar.jpg" alt="" />
+                                        <div className="ml-4 flex flex-col">
+                                            <span className="font-bold">
+                                                {researcher.first_name} {researcher.last_name_father} {researcher.last_name_mother}
+                                            </span>
+                                            <span className="text-sm text-muted-foreground">{researcher.academic_department}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                    </div>
                 </div>
             </div>
         </AppLayout>
