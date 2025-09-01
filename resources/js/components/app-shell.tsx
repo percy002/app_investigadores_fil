@@ -9,5 +9,5 @@ interface AppShellProps {
 export function AppShell({ children, variant = 'header' }: AppShellProps) {
     const isOpen = usePage<SharedData>().props.sidebarOpen;
 
-    return <div className="flex min-h-screen w-full flex-col">{children}</div>;
+    return <div   className="min-h-screen w-full flex flex-col bg-[url('/images/background/bg.webp')] bg-white bg-no-repeat bg-cover bg-center bg-fixed">{children}</div>;
 }

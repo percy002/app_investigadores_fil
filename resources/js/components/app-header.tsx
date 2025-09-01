@@ -168,7 +168,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
 
                 {/* menu inferior */}
                 <div className="hidden h-full items-center space-x-6 lg:flex ">
-                    <NavigationMenu className="flex h-full items-stretch ">
+                    <NavigationMenu className="flex h-full items-stretch bg-[#2E2E44]">
                         <NavigationMenuList className="flex h-full items-stretch space-x-2 w-dvw">
                             {mainNavItems.map((item, index) => (
                                 <div className="flex-1">
@@ -178,7 +178,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                                             className={cn(
                                                 navigationMenuTriggerStyle(),
                                                 page.url === (typeof item.href === 'string' ? item.href : item.href.url) && activeItemStyles,
-                                                'h-9 cursor-pointer px-3 flex justify-center w-full rounded-none hover:bg-white hover:text-black',
+                                                'h-9 cursor-pointer px-3 flex justify-center w-full rounded-none bg-[#2E2E44] hover:bg-white hover:text-black',
                                             )}
                                         >
                                             {item.icon && <Icon iconNode={item.icon} className="mr-2 h-4 w-4" />}
