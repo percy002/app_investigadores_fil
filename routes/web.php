@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ResearcherController;
+use App\Http\Controllers\ParticipationController;
 
 Route::get('/', function () {
     return Inertia::render('welcome');
@@ -21,16 +24,10 @@ require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
 
 
-Route::resource('projects', App\Http\Controllers\ProjectController::class);
+Route::resource('participations', ParticipationController::class);
 
-Route::resource('investigadores', App\Http\Controllers\ResearcherController::class)
-    ->names([
-        'index'   => 'researchers.index',
-        'create'  => 'researchers.create',
-        'store'   => 'researchers.store',
-        'show'    => 'researchers.show',
-        'edit'    => 'researchers.edit',
-        'update'  => 'researchers.update',
-        'destroy' => 'researchers.destroy',
-    ]);
-Route::resource('participations', App\Http\Controllers\ParticipationController::class);
+
+Route::resource('projects', ProjectController::class);
+
+Route::resource('investigadores', ResearcherController::class);
+

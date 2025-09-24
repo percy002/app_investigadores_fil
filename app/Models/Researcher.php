@@ -33,9 +33,4 @@ class Researcher extends Model
             'id' => 'integer',
         ];
     }
-
-    public function projects()
-    {
-        return $this->belongsToMany(Project::class, 'participations');
-    }
 }

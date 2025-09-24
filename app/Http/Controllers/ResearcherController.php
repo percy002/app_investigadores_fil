@@ -8,26 +8,24 @@ use App\Models\Researcher;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Inertia\Inertia;
-use Inertia\Response;
 
 class ResearcherController extends Controller
 {
-    public function index(Request $request): Response
+    public function index(): View
     {
         $researchers = Researcher::all();
 
-        return Inertia::render('researchers', [
-        'researchers' => $researchers,
+        return view('researcher.index', [
+            'researchers' => $researchers,
         ]);
     }
 
-    public function create(Request $request): Response
+    public function create(Request $request): View
     {
         return view('researcher.create');
     }
 
-    public function store(ResearcherStoreRequest $request): Response
+    public function store(ResearcherStoreRequest $request): View
     {
         $researcher = Researcher::create($request->validated());
 
@@ -36,26 +34,21 @@ class ResearcherController extends Controller
         return redirect()->route('researchers.index');
     }
 
-    
-       
-    public function show(Request $request, $id): Response
+    public function show(Request $request, Researcher $researcher): View
     {
-        $researcher = Researcher::findOrFail($id);
-    
-        return Inertia::render('researchers/researcherProfile', [
+        return view('researcher.show', [
             'researcher' => $researcher,
-            'projects' => $researcher->projects,
         ]);
     }
 
-    public function edit(Request $request, Researcher $researcher): Response
+    public function edit(Request $request, Researcher $researcher): View
     {
-        return Inertia::render('researchers/edit', [
-        'researcher' => $researcher,
-    ]);
+        return view('researcher.edit', [
+            'researcher' => $researcher,
+        ]);
     }
 
-    public function update(ResearcherUpdateRequest $request, Researcher $researcher): Response
+    public function update(ResearcherUpdateRequest $request, Researcher $researcher): View
     {
         $researcher->update($request->validated());
 
@@ -64,7 +57,7 @@ class ResearcherController extends Controller
         return redirect()->route('researchers.index');
     }
 
-    public function destroy(Request $request, Researcher $researcher): Response
+    public function destroy(Request $request, Researcher $researcher): View
     {
         $researcher->delete();
 
