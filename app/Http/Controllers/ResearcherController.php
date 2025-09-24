@@ -8,24 +8,25 @@ use App\Models\Researcher;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-
+use Inertia\Inertia;
+use Inertia\Response;
 class ResearcherController extends Controller
 {
-    public function index(): View
+    public function index(Request $request)
     {
         $researchers = Researcher::all();
 
-        return view('researcher.index', [
+        return Inertia::render('researchers/index', [
             'researchers' => $researchers,
         ]);
     }
 
-    public function create(Request $request): View
+    public function create(Request $request): Response
     {
         return view('researcher.create');
     }
 
-    public function store(ResearcherStoreRequest $request): View
+    public function store(ResearcherStoreRequest $request): Response
     {
         $researcher = Researcher::create($request->validated());
 
@@ -34,21 +35,21 @@ class ResearcherController extends Controller
         return redirect()->route('researchers.index');
     }
 
-    public function show(Request $request, Researcher $researcher): View
+    public function show(Request $request, Researcher $researcher): Response
     {
         return view('researcher.show', [
             'researcher' => $researcher,
         ]);
     }
 
-    public function edit(Request $request, Researcher $researcher): View
+    public function edit(Request $request, Researcher $researcher): Response
     {
         return view('researcher.edit', [
             'researcher' => $researcher,
         ]);
     }
 
-    public function update(ResearcherUpdateRequest $request, Researcher $researcher): View
+    public function update(ResearcherUpdateRequest $request, Researcher $researcher): Response
     {
         $researcher->update($request->validated());
 
@@ -57,7 +58,7 @@ class ResearcherController extends Controller
         return redirect()->route('researchers.index');
     }
 
-    public function destroy(Request $request, Researcher $researcher): View
+    public function destroy(Request $request, Researcher $researcher): Response
     {
         $researcher->delete();
 

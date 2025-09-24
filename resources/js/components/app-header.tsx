@@ -1,21 +1,17 @@
 import { Breadcrumbs } from '@/components/breadcrumbs';
 import { Icon } from '@/components/icon';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList, navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { UserMenuContent } from '@/components/user-menu-content';
 import { useInitials } from '@/hooks/use-initials';
 import { cn } from '@/lib/utils';
 import { dashboard } from '@/routes';
 import { type BreadcrumbItem, type NavItem, type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { LayoutGrid, Menu, Route, Search } from 'lucide-react';
+import { LayoutGrid, Menu, Search } from 'lucide-react';
 import AppLogo from './app-logo';
 import AppLogoIcon from './app-logo-icon';
-import { router } from '@inertiajs/react'
 
 const mainNavItems: NavItem[] = [
     {
@@ -25,7 +21,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'INVESTIGADORES',
-        href: dashboard(),
+        href: '/investigadores',
         icon: LayoutGrid,
     },
     {
@@ -48,7 +44,7 @@ const rightNavItems: NavItem[] = [
     // },
 ];
 
-const activeItemStyles = 'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100';
+const activeItemStyles = '!text-black !bg-white dark:text-neutral-100';
 
 interface AppHeaderProps {
     breadcrumbs?: BreadcrumbItem[];
@@ -59,7 +55,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
     const getInitials = useInitials();
     return (
         <>
-            <div className="border-b border-sidebar-border/80">
+            <div className="border-b border-sidebar-border/80 pt-5 pb-1">
                 <div className="mx-auto flex h-16 items-center px-4 md:max-w-7xl">
                     {/* Mobile Menu */}
                     <div className="lg:hidden">
@@ -167,9 +163,9 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                 </div>
 
                 {/* menu inferior */}
-                <div className="hidden h-full items-center space-x-6 lg:flex ">
+                <div className="hidden h-full items-center space-x-6 lg:flex">
                     <NavigationMenu className="flex h-full items-stretch bg-[#2E2E44]">
-                        <NavigationMenuList className="flex h-full items-stretch space-x-2 w-dvw">
+                        <NavigationMenuList className="flex h-full w-dvw items-stretch space-x-2">
                             {mainNavItems.map((item, index) => (
                                 <div className="flex-1">
                                     <NavigationMenuItem key={index} className="relative flex h-full w-full items-center">
@@ -178,7 +174,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                                             className={cn(
                                                 navigationMenuTriggerStyle(),
                                                 page.url === (typeof item.href === 'string' ? item.href : item.href.url) && activeItemStyles,
-                                                'h-9 cursor-pointer px-3 flex justify-center w-full rounded-none bg-[#2E2E44] hover:bg-white hover:text-black',
+                                                'flex h-9 w-full cursor-pointer justify-center rounded-none bg-[#2E2E44] px-3 hover:bg-white text-white hover:text-black',
                                             )}
                                         >
                                             {item.icon && <Icon iconNode={item.icon} className="mr-2 h-4 w-4" />}

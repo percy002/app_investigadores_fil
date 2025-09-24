@@ -24,10 +24,8 @@ require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
 
 
-Route::resource('participations', ParticipationController::class);
+Route::resource('projects', App\Http\Controllers\ProjectController::class);
 
+Route::resource('investigadores', App\Http\Controllers\ResearcherController::class);
 
-Route::resource('projects', ProjectController::class);
-
-Route::resource('investigadores', ResearcherController::class);
-
+Route::resource('participations', App\Http\Controllers\ParticipationController::class);

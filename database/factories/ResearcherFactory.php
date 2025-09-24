@@ -21,11 +21,25 @@ class ResearcherFactory extends Factory
     public function definition(): array
     {
         return [
-            'dni' => fake()->randomLetter(),
-            'first_name' => fake()->firstName(),
-            'last_name_father' => fake()->regexify('[A-Za-z0-9]{100}'),
-            'last_name_mother' => fake()->regexify('[A-Za-z0-9]{100}'),
-            'academic_department' => fake()->regexify('[A-Za-z0-9]{255}'),
+            'apellidos_nombres' => fake()->word(),
+            'genero' => fake()->randomElement(["Masculino","Femenino","Otro"]),
+            'documento_de_identidad' => fake()->word(),
+            'pais_nacimiento' => fake()->word(),
+            'fecha_nacimiento' => fake()->date(),
+            'correo_institucional' => fake()->word(),
+            'facultad_escuela' => fake()->word(),
+            'categoria_docente' => fake()->word(),
+            'tipo_contrato' => fake()->word(),
+            'codigo_renacyt' => fake()->word(),
+            'orcid' => fake()->word(),
+            'tipo_ocupacion' => fake()->word(),
+            'cti_vitae' => fake()->word(),
+            'produccion_cientifica' => '{}',
+            'proyectos_investigacion' => '{}',
+            'linea_investigacion' => '{}',
+            'contacto_academico' => '{}',
+            'resumen_bibliografia' => fake()->text(),
+            'status' => fake()->randomElement(["activo","inactivo"]),
         ];
     }
 }

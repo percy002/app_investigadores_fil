@@ -15,11 +15,25 @@ class Researcher extends Model
      * @var array
      */
     protected $fillable = [
-        'dni',
-        'first_name',
-        'last_name_father',
-        'last_name_mother',
-        'academic_department',
+        'apellidos_nombres',
+        'genero',
+        'documento_de_identidad',
+        'pais_nacimiento',
+        'fecha_nacimiento',
+        'correo_institucional',
+        'facultad_escuela',
+        'categoria_docente',
+        'tipo_contrato',
+        'codigo_renacyt',
+        'orcid',
+        'tipo_ocupacion',
+        'cti_vitae',
+        'produccion_cientifica',
+        'proyectos_investigacion',
+        'linea_investigacion',
+        'contacto_academico',
+        'resumen_bibliografia',
+        'status',
     ];
 
     /**
@@ -31,6 +45,11 @@ class Researcher extends Model
     {
         return [
             'id' => 'integer',
+            'fecha_nacimiento' => 'date',
+            'produccion_cientifica' => 'array',
+            'proyectos_investigacion' => 'array',
+            'linea_investigacion' => 'array',
+            'contacto_academico' => 'array',
         ];
     }
 }

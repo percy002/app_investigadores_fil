@@ -20,8 +20,6 @@ class ParticipationResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'participaciones';
-
     public static function form(Schema $schema): Schema
     {
         return ParticipationForm::configure($schema);

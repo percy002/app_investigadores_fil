@@ -8,12 +8,25 @@ models:
     timestamps
 
   Researcher:
-    dni: char:8 unique
-    first_name: string:100
-    last_name_father: string:100
-    last_name_mother: string:100
-    academic_department: string:255 nullable
-    timestamps
+    apellidos_nombres: string
+    genero: enum:Masculino,Femenino,Otro
+    documento_de_identidad: string
+    pais_nacimiento: string
+    fecha_nacimiento: date
+    correo_institucional: string
+    facultad_escuela: string
+    categoria_docente: string
+    tipo_contrato: string
+    codigo_renacyt: string
+    orcid: string
+    tipo_ocupacion: string
+    cti_vitae: string
+    produccion_cientifica: json
+    proyectos_investigacion: json
+    linea_investigacion: json
+    contacto_academico: json
+    resumen_bibliografia: text
+    status: enum:activo,inactivo
 
   Participation:
     project_id: id foreign:projects.id

@@ -20,8 +20,6 @@ class ResearcherResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'investigaciones';
-
     public static function form(Schema $schema): Schema
     {
         return ResearcherForm::configure($schema);
