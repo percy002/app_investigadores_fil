@@ -31,11 +31,11 @@ export default function Researchers() {
                             researchers.length > 0 &&
                             researchers.map((researcher) => (
                                 <div className="col-span-1" key={researcher.id}>
-                                    <div className="flex">
-                                        <img className="size-24 rounded-3xl" src="/images/avatar.jpg" alt="" />
+                                    <div className="flex items-center">
+                                        <img className="size-24 rounded-[100px] aspect-square object-cover" src="/images/avatar.jpg" alt="" />
                                         <div className="ml-4 flex flex-col">
                                             <span className="font-bold">
-                                                {researcher.first_name} {researcher.last_name_father} {researcher.last_name_mother}
+                                                {researcher.apellidos_nombres}
                                             </span>
                                             <span className="text-sm text-muted-foreground">{researcher.academic_department}</span>
                                         </div>

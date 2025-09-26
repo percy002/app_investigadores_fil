@@ -162,6 +162,19 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                     </div>
                 </div>
 
+                <div className="w-full bg-[#771515e5] bg-[url('/images/background/campus.webp')] bg-cover bg-center bg-no-repeat bg-blend-multiply">
+                    <div className="flex flex-col gap-5 py-5 text-white">
+                        <h1 className="text-center text-3xl">Investigadores/as</h1>
+                        <div className="flex justify-center">
+                            <div className="relative w-1/3">
+                                <input type="text" className="w-full rounded-full bg-white px-5 py-2 pr-10 text-black" placeholder="Buscar..." />
+                                <span className="absolute top-1/2 right-6 -translate-y-1/2 text-gray-400">
+                                    <Search className="h-5 w-5" />
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {/* menu inferior */}
                 <div className="hidden h-full items-center space-x-6 lg:flex">
                     <NavigationMenu className="flex h-full items-stretch bg-[#2E2E44]">
@@ -174,7 +187,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                                             className={cn(
                                                 navigationMenuTriggerStyle(),
                                                 page.url === (typeof item.href === 'string' ? item.href : item.href.url) && activeItemStyles,
-                                                'flex h-9 w-full cursor-pointer justify-center rounded-none bg-[#2E2E44] px-3 hover:bg-white text-white hover:text-black',
+                                                'flex h-9 w-full cursor-pointer justify-center rounded-none bg-[#2E2E44] px-3 text-white hover:bg-white hover:text-black',
                                             )}
                                         >
                                             {item.icon && <Icon iconNode={item.icon} className="mr-2 h-4 w-4" />}
